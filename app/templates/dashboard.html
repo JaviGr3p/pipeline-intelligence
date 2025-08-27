@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>App Intelligence - Dashboard grafica</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔐 APP - Intelligence Dashboard</h1>
+            <p>Visualización de incidentes recientes en LATAM y España</p>
+        </header>
+
+        <section class="summary">
+            <p><strong>Total de incidentes:</strong> {{ incidents|length }}</p>
+        </section>
+
+        <section class="incident-list">
+            {% for incident in incidents %}
+                <div class="incident-card {% if incident.severity == 'Crítica' %}critical{% elif incident.severity == 'Alta' %}high{% else %}medium{% endif %}">
+                    <h2>{{ incident.title }}</h2>
+                    <p><strong>Fecha:</strong> {{ incident.date }}</p>
+                    <p><strong>País:</strong> {{ incident.country }}</p>
+                    <p><strong>Severidad:</strong> {{ incident.severity }}</p>
+                    <p><strong>Modelo de negocio:</strong> {{ incident.model }}</p>
+                    <p><strong>Vector:</strong> {{ incident.vector }}</p>
+                    <p><strong>Impacto financiero:</strong> {{ incident.financial or 'ND' }}</p>
+                    <p><strong>DII Score:</strong> {{ incident.dii_score }}/10</p>
+                    <p><strong>Tiempo recuperación:</strong> {{ incident.recovery_time }} días</p>
+                    <p><strong>Fuente:</strong> <a href="{{ incident.source }}" target="_blank">{{ incident.source }}</a></p>
+                    <p><strong>Resumen:</strong> {{ incident.summary }}</p>
+                </div>
+            {% endfor %}
+        </section>
+
+        <footer>
+            <p>Desarrollado por Javier M. Laberit Colombia · {{ request.url.hostname }}</p>
+        </footer>
+    </div>
+</body>
+</html>

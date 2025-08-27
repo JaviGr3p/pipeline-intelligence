@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+jinja2
+feedparser
+OTXv2
+requests
+python-dotenv
+httpx

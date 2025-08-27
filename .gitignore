@@ -1,0 +1,28 @@
+# Configuraciones sensibles
+*.env
+config.ini
+secrets/
+api_keys/
+credentials/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+venv/
+env/
+
+# Docker
+.dockerignore
+
+# Logs y outputs temporales
+logs/
+*.log
+temp/
+output/*.json
+output/*.csv
+
+# Datos sensibles de inteligencia
+feeds_data/
+intel_cache/
